@@ -1,7 +1,7 @@
 FROM node:20-alpine
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci --production
+COPY package.json ./
+RUN npm install --production
 COPY server.js .
 RUN mkdir -p data
 ENV DB_PATH=/app/data/babyschlaf.db
