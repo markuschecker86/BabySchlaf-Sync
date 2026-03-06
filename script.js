@@ -630,7 +630,10 @@ function saveSl(){
 function saveFd(){
   const c=C();if(!c)return;const tv=el('fd-t').value;if(!tv){toast('⚠️ '+t('t_fill'));return}
   const d=dateFromInputs('fd-d','fd-t');
-  c.entries.push({type:'feed',sub:gp('pi-fdt')||'bottle',ts:d.getTime(),ml:parseInt(el('fd-ml').value)||0,id:Date.now().toString()});
+  const sub=gp('pi-fdt')||'bottle';const val=parseInt(el('fd-ml').value)||0;
+  const entry={type:'feed',sub,ts:d.getTime(),id:Date.now().toString()};
+  if(sub==='breast'){entry.dur=val}else{entry.ml=val}
+  c.entries.push(entry);
   save();updateAll();closeForms();toast('🍼 '+t('t_saved'))}
 function saveDp(){
   const c=C();if(!c)return;const tv=el('dp-t').value;if(!tv){toast('⚠️ '+t('t_fill'));return}
