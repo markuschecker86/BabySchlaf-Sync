@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#F0E6D8" id="theme-meta">
+<meta name="description" content="babyAlex – Der intelligente Baby Schlaf- &amp; Stilltracker aus Österreich. Besserer Schlaf für die ganze Familie.">
+<title>babyAlex – Baby Schlaf- &amp; Stilltracker</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ONBOARDING -->
+<div class="ob" id="onboarding">
+  <div class="ob-em">🌙</div>
+  <div class="ob-tt">babyAlex</div>
+  <div class="ob-sub"><span data-t="ob_sub">Besserer Schlaf für die ganze Familie.</span><br>Made in Austria 🇦🇹</div>
+  <div class="ob-f">
+    <div style="text-align:center;margin-bottom:12px"><div data-t="ob_lang" style="font-size:.8rem;color:var(--txt-m);margin-bottom:6px">Sprache wählen</div><div id="lang-grid" style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-height:120px;overflow-y:auto;padding:4px"><button class="lb" onclick="setLang('de')" style="background:var(--pri);color:#fff;border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="de">🇦🇹 Deutsch</button>
+<button class="lb" onclick="setLang('en')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="en">🇬🇧 English</button>
+<button class="lb" onclick="setLang('tr')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="tr">🇹🇷 Türkçe</button>
+<button class="lb" onclick="setLang('bs')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="bs">🇧🇦 Bosanski</button>
+<button class="lb" onclick="setLang('fr')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="fr">🇫🇷 Français</button>
+<button class="lb" onclick="setLang('es')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="es">🇪🇸 Español</button>
+<button class="lb" onclick="setLang('it')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="it">🇮🇹 Italiano</button>
+<button class="lb" onclick="setLang('pl')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="pl">🇵🇱 Polski</button>
+<button class="lb" onclick="setLang('ro')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="ro">🇷🇴 Română</button>
+<button class="lb" onclick="setLang('uk')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="uk">🇺🇦 Українська</button>
+<button class="lb" onclick="setLang('ar')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="ar">🇸🇦 العربية</button>
+<button class="lb" onclick="setLang('hu')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="hu">🇭🇺 Magyar</button>
+<button class="lb" onclick="setLang('pt')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="pt">🇧🇷 Português</button>
+<button class="lb" onclick="setLang('ru')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="ru">🇷🇺 Русский</button>
+<button class="lb" onclick="setLang('zh')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="zh">🇨🇳 中文</button>
+<button class="lb" onclick="setLang('ja')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="ja">🇯🇵 日本語</button>
+<button class="lb" onclick="setLang('ko')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="ko">🇰🇷 한국어</button>
+<button class="lb" onclick="setLang('hi')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="hi">🇮🇳 हिन्दी</button>
+<button class="lb" onclick="setLang('bn')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="bn">🇧🇩 বাংলা</button>
+<button class="lb" onclick="setLang('th')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="th">🇹🇭 ไทย</button>
+<button class="lb" onclick="setLang('vi')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="vi">🇻🇳 Tiếng Việt</button>
+<button class="lb" onclick="setLang('id')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="id">🇮🇩 Indonesia</button>
+<button class="lb" onclick="setLang('ms')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="ms">🇲🇾 Melayu</button>
+<button class="lb" onclick="setLang('tl')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="tl">🇵🇭 Filipino</button>
+<button class="lb" onclick="setLang('sw')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="sw">🇰🇪 Kiswahili</button>
+<button class="lb" onclick="setLang('nl')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="nl">🇳🇱 Nederlands</button>
+<button class="lb" onclick="setLang('sv')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="sv">🇸🇪 Svenska</button>
+<button class="lb" onclick="setLang('da')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="da">🇩🇰 Dansk</button>
+<button class="lb" onclick="setLang('no')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="no">🇳🇴 Norsk</button>
+<button class="lb" onclick="setLang('fi')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="fi">🇫🇮 Suomi</button>
+<button class="lb" onclick="setLang('el')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="el">🇬🇷 Ελληνικά</button>
+<button class="lb" onclick="setLang('cs')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="cs">🇨🇿 Čeština</button>
+<button class="lb" onclick="setLang('sk')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="sk">🇸🇰 Slovenčina</button>
+<button class="lb" onclick="setLang('bg')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="bg">🇧🇬 Български</button>
+<button class="lb" onclick="setLang('hr')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="hr">🇭🇷 Hrvatski</button>
+<button class="lb" onclick="setLang('sr')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="sr">🇷🇸 Srpski</button>
+<button class="lb" onclick="setLang('sl')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="sl">🇸🇮 Slovenščina</button>
+<button class="lb" onclick="setLang('he')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="he">🇮🇱 עברית</button>
+<button class="lb" onclick="setLang('fa')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="fa">🇮🇷 فارسی</button>
+<button class="lb" onclick="setLang('ur')" style="background:var(--card);color:var(--txt);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:.7rem;cursor:pointer;white-space:nowrap" data-lc="ur">🇵🇰 اردو</button></div></div>
+    <div class="fg"><label class="fl" data-t="ob_name">Name deines Babys</label><input class="fi" id="ob-name" placeholder="z.B. Emma" autocomplete="off"></div>
+    <div class="fg"><label class="fl" data-t="ob_bday">Geburtsdatum</label><input class="fi" id="ob-bday" type="date"></div>
+    <button class="ob-nx" onclick="finishOb()" data-t="ob_go">Los geht's! 🚀</button>
+    <div style="display:flex;align-items:center;gap:12px;margin:16px 0"><div style="flex:1;height:1px;background:var(--brd)"></div><span style="font-size:.8rem;color:var(--txt-m);white-space:nowrap"><span data-t="ob_partner">Partner hat schon einen Code?</span></span><div style="flex:1;height:1px;background:var(--brd)"></div></div>
+    <div style="display:flex;gap:8px">
+      <input type="text" id="ob-sync" class="fi" placeholder="FAMILIEN-CODE" maxlength="6" style="text-transform:uppercase;letter-spacing:3px;text-align:center;font-size:1.1rem;flex:1">
+      <button onclick="finishObWithSync()" style="padding:12px 20px;border:none;border-radius:var(--rs);background:var(--acc);color:#fff;font-weight:800;font-size:.85rem;cursor:pointer;white-space:nowrap" data-t="ob_join">Beitreten</button>
+    </div>
+  </div>
+</div>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="install-banner">
+  <span style="font-size:1.5rem">📱</span>
+  <div class="install-tt"><span data-t="inst_txt">babyAlex als App installieren – auch offline nutzbar!</span></div>
+  <button class="install-btn" onclick="installApp()" data-t="inst_btn">Installieren</button>
+  <button class="install-x" onclick="dismissInstall()">✕</button>
+</div>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-in">
+    <div class="logo">baby<span style="color:var(--acc)">Alex</span></div>
+    <div style="display:flex;align-items:center;gap:8px">
+    <button class="night-btn" id="night-btn" onclick="toggleNight()" style="background:none;border:none;font-size:1.3rem;cursor:pointer">🌙</button>
+    <div class="hdr-baby" onclick="nav('settings')">
+      <div class="baby-av">👶</div>
+      <div><div class="baby-nm" id="h-nm">Baby</div><div class="baby-ag" id="h-ag" data-t="s_age_val">0 Monate</div></div>
+    </div>
+    </div>
+  </div>
+  <div class="child-sw" id="child-sw"></div>
+</div>
+
+<!-- ===== HOME ===== -->
+<div class="scr act" id="scr-home">
+  <!-- Regression Banner -->
+  <div class="regr-banner" id="regr-banner" style="display:none"><span style="font-size:1.4rem">🔄</span><div id="regr-txt"></div></div>
+  <!-- Notification Banner -->
+  <div class="notif-banner" id="notif-b" onclick="enableNotif()">
+    <div class="notif-icon">🔔</div>
+    <div class="notif-txt"><span data-t="notif_ask">Benachrichtigungen aktivieren? Wir erinnern dich 30 Min vor dem Nickerchen!</span></div>
+    <button class="notif-close" onclick="event.stopPropagation();dismissNotifBanner()">✕</button>
+  </div>
+
+  <div class="pred" id="pred">
+    <div class="pred-z">
+      <div class="badge" id="badge"><div class="pulse" id="pu-dot"></div><span id="st-txt" data-t="tr_wake_lbl">Wach</span></div>
+      <div class="pred-lb" id="p-lb" data-t="p_next">Nächstes Nickerchen</div>
+      <div class="pred-tm" id="p-tm">--:--</div>
+      <div class="pred-sub" id="p-sub" data-t="p_start">Starte das Tracking für Vorhersagen</div>
+      <div class="pred-cd" id="p-cd"></div>
+      <div class="ww-prog" id="ww-prog" style="display:none"><div class="ww-fill" id="ww-fill"></div></div>
+      <div class="ww-labels" id="ww-labels" style="display:none"><span id="ww-elapsed"></span><span id="ww-target"></span></div>
+    </div>
+  </div>
+
+  <div class="bed-card" id="bed-card" style="display:none;background:linear-gradient(135deg,#2D2438,#1A1525);border-radius:var(--r);padding:18px 20px;margin-bottom:16px;display:flex;align-items:center;gap:14px;color:#fff"><div style="font-size:2rem">🛏️</div><div style="flex:1"><div style="font-weight:800;font-size:.9rem" data-t="p_bedtime">Optimale Schlafenszeit</div><div id="bed-tm" style="font-family:Quicksand;font-weight:800;font-size:1.4rem;color:#F2C57C">--:--</div><div id="bed-sub" style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:2px"></div></div></div>
+
+  <div id="home-tu-tile" style="display:none;background:var(--card);border-radius:var(--r);padding:14px 16px;margin-bottom:14px;box-shadow:var(--sh);cursor:pointer;display:flex;align-items:center;gap:12px" onclick="nav('tagesuhr')"><div style="font-size:1.8rem">🕐</div><div style="flex:1"><div style="font-weight:800;font-size:.9rem">Tagesuhr</div><div style="font-size:.72rem;color:var(--txt-m);margin-top:2px">Visuelle 24h-Ansicht mit Vorhersage</div></div><div style="color:var(--txt-m);font-size:1.2rem">›</div></div>
+
+  <div class="day-tl" style="background:var(--card);border-radius:var(--rs);padding:14px 16px;margin-bottom:14px;box-shadow:var(--sh)"><div style="font-weight:700;font-size:.8rem;margin-bottom:8px;color:var(--txt-l)" data-t="day_tl">📊 Tagesverlauf</div><div id="day-bar" style="height:24px;background:var(--bg2);border-radius:6px;position:relative;overflow:hidden;display:flex"></div><div style="display:flex;justify-content:space-between;margin-top:4px;font-size:.55rem;color:var(--txt-m)"><span>06</span><span>09</span><span>12</span><span>15</span><span>18</span><span>21</span></div></div>
+
+  <div class="qact">
+    <button class="abtn sl" id="btn-sleep" onclick="qSleepAsk()"><span class="ic">😴</span><span class="lb" data-t="h_asleep">Eingeschlafen</span></button>
+    <button class="abtn wk" id="btn-wake" onclick="qWake()"><span class="ic">☀️</span><span class="lb" data-t="h_awake">Aufgewacht</span></button>
+  </div>
+  <div id="sleep-time-picker" class="stp-wrap" style="display:none">
+    <div class="stp-inner">
+      <span data-t="f_sleep_when" style="font-weight:700;font-size:.85rem">⏰ Wann eingeschlafen?</span>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:6px">
+        <button class="stp-btn act" onclick="stpNow()">Jetzt</button>
+        <input type="time" id="stp-time" class="stp-input" onchange="stpCustom()">
+        <button class="stp-go" onclick="qSleepConfirm()">✓</button>
+        <button class="stp-x" onclick="stpCancel()">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tracking Kacheln -->
+  <div class="sec-t" style="margin-top:8px">📊 <span data-t="h_track">Eintrag erfassen</span></div>
+  <div class="tcat">
+    <div class="tc" onclick="openForm('feed')"><div class="ic">🍼</div><div class="nm" data-t="h_feed">Fütterung</div></div>
+    <div class="tc" onclick="openForm('diaper')"><div class="ic">🧷</div><div class="nm" data-t="h_diaper">Windel</div></div>
+    <div class="tc" onclick="openForm('night')"><div class="ic">🌙</div><div class="nm" data-t="h_night">Unruhig</div></div>
+    <div class="tc" onclick="if(swState.startTime){nurseRestore()}else{openForm('nurse')}"><div class="ic">🤱</div><div class="nm" data-t="h_nurse">Stillen</div></div>
+    <div class="tc" onclick="openForm('pump')"><div class="ic">🧴</div><div class="nm" data-t="h_pump">Abpumpen</div></div>
+    <div class="tc" onclick="openForm('sleep')"><div class="ic">😴</div><div class="nm" data-t="h_sleep">Schlaf</div></div>
+    <div class="tc" onclick="openForm('note')"><div class="ic">📝</div><div class="nm" data-t="h_note">Notiz</div></div>
+  </div>
+</div>
+
+<!-- ===== HEUTE ===== -->
+<div class="scr" id="scr-today">
+  <!-- Date Nav -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <button onclick="calPrev()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt)">◀</button>
+    <div id="cal-month" style="font-weight:800;font-size:.95rem;cursor:pointer" onclick="calToday()"></div>
+    <button onclick="calNext()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt)">▶</button>
+  </div>
+  <!-- Calendar Grid -->
+  <div id="cal-days" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:12px;text-align:center"></div>
+  <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:16px;text-align:center"></div>
+  <!-- Selected Day Info -->
+  <div id="cal-day-header" style="font-weight:700;font-size:.9rem;color:var(--pri-d);margin-bottom:8px"></div>
+  <div id="cal-day-stats" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap"></div>
+  <div class="tl" id="tl"></div>
+  <div class="emp" id="tl-emp"><div class="emp-em">📝</div><div class="emp-tt" data-t="cal_none">Keine Einträge</div><div class="emp-sub" data-t="cal_none_sub">An diesem Tag wurde nichts erfasst.</div></div>
+</div>
+
+<!-- FORM MODALS -->
+<div class="mdl-o" id="fm-sleep" onclick="if(event.target===this)closeForm()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="event.stopPropagation();closeForm()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+  <div class="mdl-t" data-t="f_sleep_t">😴 Schlaf eintragen</div>
+  <div class="fg"><label class="fl" data-t="f_type">Art</label><div class="pills" id="pi-slt"><div class="pill sel" data-v="nap" onclick="sp(this)" data-t="f_nap">Nickerchen</div><div class="pill" data-v="night" onclick="sp(this)" data-t="f_night">Nachtschlaf</div></div></div>
+  <div class="fg"><label class="fl">📅 Datum</label><input class="fi" type="date" id="sl-d"></div>
+  <div class="fr"><div class="fg"><label class="fl" data-t="h_asleep">Eingeschlafen</label><input class="fi" type="time" id="sl-s"></div><div class="fg"><label class="fl" data-t="h_awake">Aufgewacht</label><input class="fi" type="time" id="sl-e"></div></div>
+  <button class="sbtn" onclick="saveSl()" data-t="f_save">💾 Speichern</button>
+</div></div>
+
+<div class="mdl-o" id="fm-feed" onclick="if(event.target===this)closeForm()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="event.stopPropagation();closeForm()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+  <div class="mdl-t" data-t="f_feed_t">🍼 Fütterung eintragen</div>
+  <div class="fg"><label class="fl" data-t="f_type">Art</label><div class="pills" id="pi-fdt"><div class="pill sel" data-v="breast" onclick="sp(this)" data-t="f_breast">Stillen</div><div class="pill" data-v="bottle" onclick="sp(this)" data-t="f_bottle">Flasche</div><div class="pill" data-v="solid" onclick="sp(this)" data-t="f_solid">Beikost</div></div></div>
+  <div class="fg"><label class="fl">📅 Datum</label><input class="fi" type="date" id="fd-d"></div>
+  <div class="fr"><div class="fg"><label class="fl" data-t="f_time">Uhrzeit</label><input class="fi" type="time" id="fd-t"></div><div class="fg"><label class="fl" id="fd-ml-lbl" data-t="f_dur">Dauer (Min)</label><input class="fi" type="number" id="fd-ml" placeholder="15" min="1" max="120"></div></div>
+  <button class="sbtn" onclick="saveFd()" data-t="f_save">💾 Speichern</button>
+</div></div>
+
+<div class="mdl-o" id="fm-diaper" onclick="if(event.target===this)closeForm()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="event.stopPropagation();closeForm()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+  <div class="mdl-t" data-t="f_diaper_t">🧷 Windel eintragen</div>
+  <div class="fg"><label class="fl" data-t="f_type">Art</label><div class="pills" id="pi-dpt"><div class="pill sel" data-v="wet" onclick="sp(this)" data-t="f_wet">Nass</div><div class="pill" data-v="dirty" onclick="sp(this)" data-t="f_dirty">Voll</div><div class="pill" data-v="both" onclick="sp(this)" data-t="f_both">Beides</div></div></div>
+  <div class="fg"><label class="fl">📅 Datum</label><input class="fi" type="date" id="dp-d"></div>
+  <div class="fg"><label class="fl" data-t="f_time">Uhrzeit</label><input class="fi" type="time" id="dp-t"></div>
+  <button class="sbtn" onclick="saveDp()" data-t="f_save">💾 Speichern</button>
+</div></div>
+
+<div class="mdl-o" id="fm-note" onclick="if(event.target===this)closeForm()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="event.stopPropagation();closeForm()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+  <div class="mdl-t" data-t="f_note_t">📝 Notiz</div>
+  <div class="fg"><label class="fl">📅 Datum</label><input class="fi" type="date" id="nt-d"></div>
+  <div class="fg"><label class="fl" data-t="f_time">Uhrzeit</label><input class="fi" type="time" id="nt-t"></div>
+  <div class="fg"><label class="fl" data-t="f_note_ph">Notiz</label><input class="fi" type="text" id="nt-tx" placeholder="z.B. Temperatur 37.2°"></div>
+  <button class="sbtn" onclick="saveNt()" data-t="f_save">💾 Speichern</button>
+</div></div>
+
+<div class="mdl-o" id="fm-night" onclick="if(event.target===this)closeForm()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="event.stopPropagation();closeForm()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+  <div class="mdl-t" data-t="f_night_t">🌙 Nächtliches Aufwachen</div>
+  <div class="fg"><label class="fl">📅 Datum</label><input class="fi" type="date" id="nw-dt"></div>
+  <div class="fg"><label class="fl" data-t="f_time">Uhrzeit</label><input class="fi" type="time" id="nw-t"></div>
+  <div class="fg"><label class="fl" data-t="f_dur">Dauer (Min)</label><input class="fi" type="number" id="nw-d" placeholder="15"></div>
+  <div class="fg"><label class="fl" data-t="f_reason">Grund</label><div class="pills" id="pi-nwr"><div class="pill sel" data-v="hunger" onclick="sp(this)" data-t="f_hunger">Hunger</div><div class="pill" data-v="diaper" onclick="sp(this)">Windel</div><div class="pill" data-v="comfort" onclick="sp(this)" data-t="f_comfort">Trost</div><div class="pill" data-v="unknown" onclick="sp(this)" data-t="f_unknown">Unbekannt</div></div></div>
+  <button class="sbtn" onclick="saveNw()" data-t="f_save">💾 Speichern</button>
+</div></div>
+
+<div class="mdl-o" id="fm-nurse" onclick="if(event.target===this)nurseCloseAsk()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="event.stopPropagation();nurseCloseAsk()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+  <div class="mdl-t" data-t="f_nurse_t">🤱 Stillen mit Stoppuhr</div>
+  <div class="nurse-sw" style="text-align:center;margin:16px 0">
+    <div id="sw-time" style="font-family:Quicksand;font-weight:800;font-size:3rem;letter-spacing:2px">00:00</div>
+    <div style="display:flex;justify-content:center;gap:20px;margin:18px 0">
+      <button id="sw-L" onclick="swSide('L')" class="sw-side-btn"><div class="sw-side-icon">🤱</div><div class="sw-side-label" data-t="f_left">Links</div><div id="sw-tL" class="sw-side-time">0:00</div><div class="sw-pulse"></div></button>
+      <button id="sw-R" onclick="swSide('R')" class="sw-side-btn"><div class="sw-side-icon">🤱</div><div class="sw-side-label" data-t="f_right">Rechts</div><div id="sw-tR" class="sw-side-time">0:00</div><div class="sw-pulse"></div></button>
+    </div>
+    <div id="sw-hint" style="font-size:.75rem;color:var(--txt-m);margin:-6px 0 10px" data-t="f_nurse_hint">Seite antippen zum Wechseln</div>
+    <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+      <button id="sw-start" onclick="swStart()" style="padding:12px 28px;border:none;border-radius:var(--rs);font-family:Nunito;font-weight:800;font-size:.9rem;cursor:pointer;background:var(--ok);color:#fff" data-t="f_start">▶ Start</button>
+      <button id="sw-pause" onclick="swPause()" style="padding:12px 28px;border:none;border-radius:var(--rs);font-family:Nunito;font-weight:800;font-size:.9rem;cursor:pointer;background:var(--wrn);color:#fff;display:none">⏸ Pause</button>
+      <button id="sw-stop" onclick="nurseStopAsk()" style="padding:12px 28px;border:none;border-radius:var(--rs);font-family:Nunito;font-weight:800;font-size:.9rem;cursor:pointer;background:var(--err);color:#fff;display:none">⏹ Stop</button>
+      <button onclick="swReset()" style="padding:12px 28px;border:none;border-radius:var(--rs);font-family:Nunito;font-weight:800;font-size:.9rem;cursor:pointer;background:var(--bg2);color:var(--txt-l)" data-t="f_reset">↺ Reset</button>
+    </div>
+  </div>
+</div></div>
+
+
+
+<!-- ===== PUMP TIMER ===== -->
+<div class="mdl-o" id="fm-pump" onclick="if(event.target===this)pumpCloseAsk()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="event.stopPropagation();pumpCloseAsk()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+  <div class="mdl-t" data-t="f_pump_t">🧴 Abpumpen Timer</div>
+  <div style="text-align:center;margin:16px 0">
+    <div id="pump-time" style="font-family:Quicksand;font-weight:800;font-size:3rem;letter-spacing:2px">00:00</div>
+    <div style="display:flex;justify-content:center;gap:16px;margin:18px 0">
+      <button id="pump-L" onclick="pumpSide('L')" class="sw-side-btn"><div class="sw-side-icon">🫙</div><div class="sw-side-label" data-t="f_left">Links</div><div id="pump-tL" class="sw-side-time">0:00</div><div class="sw-pulse"></div></button>
+      <button id="pump-R" onclick="pumpSide('R')" class="sw-side-btn"><div class="sw-side-icon">🫙</div><div class="sw-side-label" data-t="f_right">Rechts</div><div id="pump-tR" class="sw-side-time">0:00</div><div class="sw-pulse"></div></button>
+      <button id="pump-B" onclick="pumpSide('B')" class="sw-side-btn"><div class="sw-side-icon">🫙🫙</div><div class="sw-side-label" data-t="f_pump_both">Beide</div><div id="pump-tB" class="sw-side-time">0:00</div><div class="sw-pulse"></div></button>
+    </div>
+    <div class="fr" style="margin:12px 0"><label class="fl" data-t="f_pump_ml">Menge (ml)</label><input type="number" id="pump-ml" placeholder="z.B. 120" min="0" max="999" style="width:100%;padding:10px 14px;border-radius:var(--rs);border:1.5px solid var(--brd);font-family:Nunito;font-size:.9rem;text-align:center"></div>
+    <div class="fr" style="margin:12px 0"><label class="fl" data-t="mk_storage">Lagerort</label>
+      <div class="pills" id="pi-pump-store"><div class="pill sel" data-v="fridge" onclick="sp(this)">❄️ Kühlschrank</div><div class="pill" data-v="freezer" onclick="sp(this)">🧊 Tiefkühler</div><div class="pill" data-v="room" onclick="sp(this)">🌡️ Raum</div><div class="pill" data-v="none" onclick="sp(this)">❌ Nicht lagern</div></div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+      <button id="pump-start" onclick="pumpStart()" style="padding:12px 28px;border:none;border-radius:var(--rs);font-family:Nunito;font-weight:800;font-size:.9rem;cursor:pointer;background:var(--ok);color:#fff" data-t="f_start">▶ Start</button>
+      <button id="pump-pause-btn" onclick="pumpPauseFn()" style="padding:12px 28px;border:none;border-radius:var(--rs);font-family:Nunito;font-weight:800;font-size:.9rem;cursor:pointer;background:var(--wrn);color:#fff;display:none">⏸ Pause</button>
+      <button id="pump-stop" onclick="pumpStopAsk()" style="padding:12px 28px;border:none;border-radius:var(--rs);font-family:Nunito;font-weight:800;font-size:.9rem;cursor:pointer;background:var(--err);color:#fff;display:none">⏹ Stop</button>
+      <button onclick="pumpReset()" style="padding:12px 28px;border:none;border-radius:var(--rs);font-family:Nunito;font-weight:800;font-size:.9rem;cursor:pointer;background:var(--bg2);color:var(--txt-l)" data-t="f_reset">↺ Reset</button>
+    </div>
+  </div>
+</div></div>
+
+<!-- PUMP CONFIRM MODALS -->
+<div class="mdl-o mk-confirm" id="pump-confirm" onclick="if(event.target===this)this.classList.remove('show')"><div class="mdl" style="background:var(--bg);border-radius:var(--r);padding:22px;width:90%;max-width:350px;margin:auto;text-align:center">
+  <div style="font-size:2rem;margin-bottom:8px">🧴</div>
+  <div style="font-weight:800;margin-bottom:12px" data-t="f_pump_stop_q">Abpumpen beenden & speichern?</div>
+  <div id="pump-confirm-info" style="font-size:.85rem;color:var(--txt-m);margin-bottom:16px"></div>
+  <div style="display:flex;gap:12px;justify-content:center">
+    <button onclick="pumpStopConfirmed()" style="padding:10px 24px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--ok);color:#fff">✓ Ja, speichern</button>
+    <button onclick="el('pump-confirm').classList.remove('show')" style="padding:10px 24px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--bg2);color:var(--txt-l)">← Weiter</button>
+  </div>
+</div></div>
+<div class="mdl-o mk-confirm" id="pump-close-confirm" onclick="if(event.target===this)this.classList.remove('show')"><div class="mdl" style="background:var(--bg);border-radius:var(--r);padding:22px;width:90%;max-width:350px;margin:auto;text-align:center">
+  <div style="font-size:2rem;margin-bottom:8px">🧴</div>
+  <div style="font-weight:800;margin-bottom:12px">Abpumpen schließen?</div>
+  <div id="pump-close-info" style="font-size:.85rem;color:var(--txt-m);margin-bottom:16px"></div>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <button onclick="pumpCloseSave()" style="padding:10px 20px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--ok);color:#fff">💾 Speichern</button>
+    <button onclick="pumpCloseDiscard()" style="padding:10px 20px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--err);color:#fff">🗑 Verwerfen</button>
+    <button onclick="el('pump-close-confirm').classList.remove('show')" style="padding:10px 20px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--bg2);color:var(--txt-l)">← Zurück</button>
+  </div>
+</div></div>
+
+<!-- ===== MILK STORAGE SCREEN ===== -->
+<div class="scr" id="scr-milk">
+  <div class="sec-t" style="margin-bottom:4px">🧊 <span data-t="mk_title">Milchlager</span></div>
+  <div style="font-size:.75rem;color:var(--txt-m);margin-bottom:14px" data-t="mk_sub">Abgepumpte Milch verwalten & Haltbarkeit tracken</div>
+
+  <!-- CDC Guidelines Card -->
+  <div style="background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:var(--sh)">
+    <div style="font-weight:800;font-size:.85rem;margin-bottom:10px">📋 CDC Lagerrichtlinien</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;font-size:.72rem">
+      <div style="background:var(--bg2);border-radius:var(--rs);padding:10px 6px">
+        <div style="font-size:1.2rem">🌡️</div><div style="font-weight:800;color:var(--wrn)">Raumtemp.</div><div style="font-weight:800;font-size:1.1rem">4h</div><div style="color:var(--txt-m)">≤25°C</div>
+      </div>
+      <div style="background:var(--bg2);border-radius:var(--rs);padding:10px 6px">
+        <div style="font-size:1.2rem">❄️</div><div style="font-weight:800;color:var(--info)">Kühlschrank</div><div style="font-weight:800;font-size:1.1rem">4 Tage</div><div style="color:var(--txt-m)">≤4°C</div>
+      </div>
+      <div style="background:var(--bg2);border-radius:var(--rs);padding:10px 6px">
+        <div style="font-size:1.2rem">🧊</div><div style="font-weight:800;color:#6B8DD6">Tiefkühler</div><div style="font-weight:800;font-size:1.1rem">6 Mon.</div><div style="color:var(--txt-m)">≤-18°C</div>
+      </div>
+    </div>
+    <div style="font-size:.65rem;color:var(--txt-m);margin-top:6px;text-align:center">Quelle: CDC Breast Milk Storage Guidelines</div>
+  </div>
+
+  <!-- Add New Portion -->
+  <button onclick="milkAddNew()" id="mk-add-btn" style="width:100%;padding:14px;border:2px dashed var(--brd);border-radius:var(--r);background:transparent;font-family:Nunito;font-weight:800;font-size:.85rem;cursor:pointer;color:var(--prim);margin-bottom:14px">+ Neue Milchportion hinzufügen</button>
+
+  <!-- Add Form -->
+  <div id="mk-form" style="display:none;background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:var(--sh)">
+    <div style="font-weight:800;font-size:.85rem;margin-bottom:12px">🆕 Neue Portion</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <div><label class="fl">Menge (ml)</label><input type="number" id="mk-ml" placeholder="120" style="width:100%;padding:8px 10px;border-radius:var(--rs);border:1.5px solid var(--brd);font-family:Nunito;font-size:.85rem"></div>
+      <div><label class="fl">Datum & Zeit</label><input type="datetime-local" id="mk-dt" style="width:100%;padding:8px 10px;border-radius:var(--rs);border:1.5px solid var(--brd);font-family:Nunito;font-size:.85rem"></div>
+    </div>
+    <div style="margin-bottom:10px"><label class="fl">Lagerort</label>
+      <div class="pills" id="pi-mks"><div class="pill sel" data-v="fridge" onclick="sp(this)">❄️ Kühlschrank</div><div class="pill" data-v="freezer" onclick="sp(this)">🧊 Tiefkühler</div><div class="pill" data-v="room" onclick="sp(this)">🌡️ Raum</div></div>
+    </div>
+    <div style="margin-bottom:12px"><label class="fl">Notiz (optional)</label><input type="text" id="mk-note" placeholder="z.B. Morgens, nach dem Füttern" style="width:100%;padding:8px 10px;border-radius:var(--rs);border:1.5px solid var(--brd);font-family:Nunito;font-size:.85rem"></div>
+    <div style="display:flex;gap:10px">
+      <button onclick="milkSaveNew()" style="flex:1;padding:10px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--ok);color:#fff">💾 Speichern & Code generieren</button>
+      <button onclick="el('mk-form').style.display='none';el('mk-add-btn').style.display=''" style="padding:10px 16px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--bg2);color:var(--txt-l)">✕</button>
+    </div>
+  </div>
+
+  <!-- Milk Inventory -->
+  <div id="mk-list"></div>
+  <div id="mk-empty" style="text-align:center;padding:30px 20px;color:var(--txt-m)">
+    <div style="font-size:2.5rem;margin-bottom:8px">🧴</div>
+    <div style="font-weight:800;font-size:.9rem">Noch keine Milch gelagert</div>
+    <div style="font-size:.75rem;margin-top:4px">Pumpe ab und tracke die Haltbarkeit!</div>
+  </div>
+</div>
+
+<!-- ===== SOUNDS ===== -->
+<div class="scr" id="scr-sounds">
+  <div class="sec-t" style="margin-bottom:16px" data-t="snd_title">🎵 Schlafgeräusche</div>
+  <div class="np" id="np"><div class="np-vis"><div class="np-rg an"></div><div class="np-rg an"></div><div class="np-rg an"></div><div class="np-ic" id="np-ic">🌧️</div></div>
+    <div class="np-tt" id="np-tt">-</div><div class="np-sb" id="np-sb">-</div>
+    <div class="np-ct"><button class="np-bt" onclick="stopSnd()">⏹️</button><button class="np-bt pl" id="np-pl" onclick="togPause()">⏸️</button><button class="np-bt" onclick="sndTimer()">⏱️</button></div>
+    <div class="np-timer" id="np-tmr"></div></div>
+  <div class="sg" id="sgrid"></div>
+</div>
+
+<!-- ===== TRENDS ===== -->
+<div class="scr" id="scr-trends">
+  <div class="sec-t" style="margin-bottom:16px" data-t="tr_title">📈 Trends >📈 Trends & Statistiken< Statistiken</div>
+  <div class="stg">
+    <div class="stc"><div class="st-v" id="s-tot">--</div><div class="st-l" data-t="tr_total_today">Gesamtschlaf heute</div></div>
+    <div class="stc"><div class="st-v" id="s-nap">--</div><div class="st-l" data-t="tr_naps_today">Nickerchen heute</div></div>
+    <div class="stc"><div class="st-v" id="s-ww">--</div><div class="st-l" data-t="tr_avg">∅ Wachfenster</div></div>
+    <div class="stc"><div class="st-v" id="s-nwk">--</div><div class="st-l" data-t="tr_long">Längster Schlaf</div></div>
+  </div>
+  <div class="chc"><div class="ch-t" data-t="tr_s7">Schlaf der letzten 7 Tage</div><div class="ch-a"><div class="bc" id="wch"></div></div>
+    <div class="lg"><div class="lgi"><div class="lgd" style="background:var(--slp)"></div>Schlaf</div><div class="lgi"><div class="lgd" style="background:var(--wak)"></div>Wach</div></div></div>
+  <div class="chc"><div class="ch-t" data-t="tr_ww">Wachfenster-Entwicklung</div><div class="ch-a"><canvas id="wcv"></canvas></div></div>
+  <div class="chc"><div class="ch-t" data-t="tr_nw">Nacht-Aufwachen (7 Tage)</div><div class="ch-a"><canvas id="nwcv"></canvas></div></div>
+  <div class="chc"><div class="ch-t" data-t="tr_algo">🧠 Algorithmus</div><div style="font-size:.82rem;color:var(--txt-l);line-height:1.6" id="algo-i"></div></div>
+  <div class="chc"><div class="ch-t" data-t="algo_info">Algorithmus-Info</div>
+    <div style="font-size:.85rem;color:var(--txt-l);line-height:1.6" id="algo-i"></div></div>
+</div>
+
+<!-- ===== COURSE ===== -->
+<div class="scr" id="scr-course">
+  <div class="sec-t" style="margin-bottom:8px">📚 Schlafkurs</div>
+  <div style="font-size:.85rem;color:var(--txt-l);margin-bottom:16px;line-height:1.5">14-Tage Baby-Schlaf-Guide – wissenschaftlich fundiert, bindungsorientiert.</div>
+  <div class="crs-pg"><div class="crs-pg-label" id="cpg-lb" data-t="co_prog">0 von 8 Kapiteln abgeschlossen</div><div class="crs-pg-bar"><div class="crs-pg-fill" id="cpg-fl" style="width:0%"></div></div></div>
+  <div id="crs-list"></div>
+</div>
+
+<!-- ===== SETTINGS ===== -->
+<div class="scr" id="scr-settings">
+  <div class="sec-t" style="margin-bottom:16px" data-t="s_title">⚙️ Einstellungen</div>
+  <div style="margin-bottom:20px">
+    <div class="set-i" onclick="editName()" style="cursor:pointer"><div><div class="set-lb" data-t="s_babyname">Baby Name</div><div class="set-vl" id="s-nm">--</div></div><span style="color:var(--txt-m)">✏️</span></div>
+    <div class="set-i" onclick="editBday()" style="cursor:pointer"><div><div class="set-lb" data-t="s_bday">Geburtsdatum</div><div class="set-vl" id="s-bd">--</div></div><span style="color:var(--txt-m)">✏️</span></div>
+    <div class="set-i"><div><div class="set-lb" data-t="s_age">Alter</div><div class="set-vl" id="s-ag">--</div></div></div>
+    <div class="set-i"><div><div class="set-lb" data-t="s_algophase">Algorithmus-Phase</div><div class="set-vl" id="s-ph" data-t="s_starttrack">Starte Tracking</div></div></div>
+    <div class="set-i" onclick="addChild()" style="cursor:pointer"><div class="set-lb" data-t="s_addchild">👶 Weiteres Kind hinzufügen</div><span style="color:var(--txt-m)">➕</span></div>
+  </div>
+  <div style="margin-bottom:20px">
+    <div class="sec-t" data-t="s_notif">Benachrichtigungen</div>
+    <div class="set-i"><div class="set-lb" data-t="s_night">Nachtmodus</div><button class="toggle" id="tog-night" onclick="toggleNight()"></button></div>
+<div class="set-i"><div class="set-lb" data-t="s_push">Push-Notifications</div><button class="toggle" id="tog-notif" onclick="enableNotif()"></button></div>
+    <div class="set-i"><div class="set-lb" data-t="s_lead">Vorlauf (Minuten)</div><div class="set-vl">30</div></div>
+    <div class="set-i" onclick="openLangPicker()" style="cursor:pointer"><div class="set-lb" data-t="s_lang">🌍 Sprache</div><div class="set-vl" id="lang-sel">🇦🇹 Deutsch</div></div>
+  </div>
+  <div style="margin-bottom:20px">
+    <div class="sec-t">🧪 Beta-Features</div>
+    <div class="set-i" onclick="toggleTagesuhr()" style="cursor:pointer"><div><div class="set-lb">🕐 Tagesuhr-Ansicht</div><div style="font-size:.75rem;color:var(--txt-m);margin-top:2px">Visuelle 24h-Übersicht mit Vorhersage</div></div><input type="checkbox" id="s-tu-cb" style="width:20px;height:20px;cursor:pointer;pointer-events:none"></div>
+  </div>
+  <div style="margin-bottom:20px">
+    <div class="sec-t"><span data-t="s_sync">👨‍👩‍👧 Familien-Sync</span></div>
+    <div id="sync-off" style="display:block">
+      <div style="background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:8px">
+        <div style="font-weight:700;margin-bottom:8px">Daten mit Partner teilen</div>
+        <div style="font-size:.85rem;color:var(--txt-m);margin-bottom:12px" data-t="sy_sub">Erstelle einen Familien-Code oder tritt einer Familie bei. Beide Elternteile sehen dieselben Daten.</div>
+        <button class="sbtn" onclick="createFamily()" style="margin-bottom:8px">🏠 Familie erstellen</button>
+        <div style="display:flex;gap:8px">
+          <input type="text" id="join-code" class="fi" placeholder="Code eingeben" maxlength="6" style="text-transform:uppercase;letter-spacing:3px;text-align:center;font-size:1.2rem">
+          <button class="sbtn" onclick="joinFamily()" style="width:auto;padding:16px 24px;white-space:nowrap">Beitreten</button>
+        </div>
+      </div>
+    </div>
+    <div id="sync-on" style="display:none">
+      <div style="background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:16px;margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="font-weight:700;color:var(--ok)">✅ Verbunden</div>
+          <div id="sync-status" style="font-size:.75rem;color:var(--txt-m)"></div>
+        </div>
+        <div style="text-align:center;margin:12px 0">
+          <div style="font-size:.75rem;color:var(--txt-m);font-weight:600">FAMILIEN-CODE</div>
+          <div id="sync-code" style="font-family:Quicksand;font-weight:800;font-size:2rem;letter-spacing:5px;color:var(--pri)"></div>
+          <button onclick="copyCode()" style="background:none;border:1px solid var(--brd);border-radius:20px;padding:4px 16px;color:var(--txt-l);font-size:.8rem;cursor:pointer;margin-top:4px">📋 Code kopieren</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="sbtn" onclick="syncNow()">🔄 Jetzt syncen</button>
+          <button onclick="leaveFamily()" style="background:none;border:2px solid var(--err);border-radius:var(--rs);padding:12px;color:var(--err);font-weight:700;cursor:pointer;white-space:nowrap">Trennen</button>
+        </div>
+      </div>
+      <div id="sync-info" style="font-size:.75rem;color:var(--txt-m);text-align:center;margin-top:4px"></div>
+    </div>
+  </div>
+  <div style="margin-bottom:20px">
+    <div class="sec-t" data-t="s_data">Daten</div>
+    <div class="set-i" onclick="showHistory()" style="cursor:pointer"><div class="set-lb" data-t="s_hist">📋 Alle Einträge ansehen</div><span style="color:var(--txt-m)">→</span></div>
+    <div class="set-i" onclick="exportCSV()" style="cursor:pointer"><div class="set-lb" data-t="s_csv">📥 Daten exportieren (CSV)</div></div>
+    <div class="set-i" onclick="backupData()" style="cursor:pointer"><div class="set-lb" data-t="s_backup">💾 Backup speichern (JSON)</div></div>
+    <div class="set-i" style="cursor:pointer;position:relative"><div class="set-lb" data-t="s_restore">📂 Backup laden</div><input type="file" accept=".json" onchange="restoreData(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer"></div>
+    <div class="set-i" onclick="shareData()" style="cursor:pointer"><div class="set-lb" data-t="s_report">📤 Bericht für Kinderarzt</div></div>
+    <div class="set-i" onclick="compactData()" style="cursor:pointer"><div class="set-lb" data-t="s_compact">🗜️ Daten komprimieren</div></div>
+    <div class="set-i" onclick="clearAll()" style="cursor:pointer"><div class="set-lb" style="color:var(--err)" data-t="s_delete">🗑️ Alle Daten löschen</div></div>
+  </div>
+  <div><div class="sec-t">Tutorial</div>
+    <div class="set-i" onclick="tutStart()" style="cursor:pointer"><div class="set-lb" data-t="s_tutorial">🎓 Tutorial wiederholen</div><div class="set-vl">→</div></div>
+  </div>
+  <div><div class="sec-t" data-t="s_feedback_t">Beta-Feedback</div>
+    <div class="set-i" onclick="openFeedback()" style="cursor:pointer"><div class="set-lb" data-t="s_feedback_btn">🐛 Bug melden / Feedback</div><div class="set-vl">→</div></div>
+  </div>
+  <div><div class="sec-t" data-t="s_info">Info</div>
+    <div class="set-i"><div class="set-lb" data-t="s_version">Version</div><div class="set-vl">1.0.0</div></div>
+    <div class="set-i"><div class="set-lb">Made with ❤️ in Austria</div><div class="set-vl">MurSolutions</div></div>
+  </div>
+</div>
+
+
+<!-- FEEDBACK MODAL -->
+<div class="mdl-o" id="fm-feedback" onclick="if(event.target===this)closeFeedback()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px;max-height:85vh;overflow-y:auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="closeFeedback()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+  <div class="mdl-t">🐛 Beta-Feedback</div>
+  <div style="margin:12px 0">
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <button class="fb-type act" onclick="fbType(this,'bug')" data-v="bug">🐛 Bug</button>
+      <button class="fb-type" onclick="fbType(this,'feature')" data-v="feature">💡 Idee</button>
+      <button class="fb-type" onclick="fbType(this,'ux')" data-v="ux">🎨 Design</button>
+      <button class="fb-type" onclick="fbType(this,'other')" data-v="other">💬 Sonstiges</button>
+    </div>
+    <textarea id="fb-text" rows="4" placeholder="Beschreibe den Bug oder dein Feedback..." style="width:100%;box-sizing:border-box;border:2px solid var(--brd);border-radius:var(--rs);padding:12px;font-family:Nunito;font-size:.9rem;resize:vertical;background:var(--bg)"></textarea>
+    <div style="margin:12px 0">
+      <div style="font-weight:700;font-size:.85rem;margin-bottom:8px" data-t="fb_screenshot">📸 Screenshot</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button onclick="fbAutoScreenshot()" class="fb-ss-btn" id="fb-auto-ss">📱 Auto-Screenshot</button>
+        <label class="fb-ss-btn" style="cursor:pointer">📁 Bild hochladen<input type="file" accept="image/*" onchange="fbFileUpload(event)" style="display:none" id="fb-file"></label>
+      </div>
+      <div id="fb-preview" style="margin-top:8px;display:none"><img id="fb-preview-img" style="max-width:100%;border-radius:8px;border:2px solid var(--brd)"><button onclick="fbClearImg()" style="position:relative;top:-10px;background:var(--err);color:#fff;border:none;border-radius:50%;width:24px;height:24px;font-size:.7rem;cursor:pointer">✕</button></div>
+    </div>
+    <div id="fb-device" style="background:var(--bg2);padding:10px;border-radius:var(--rs);font-size:.75rem;color:var(--txt-m);margin-bottom:12px"></div>
+    <button onclick="fbSend()" class="sbtn" id="fb-send-btn">📤 Feedback senden</button>
+    <div id="fb-status" style="text-align:center;margin-top:8px;font-size:.85rem"></div>
+  </div>
+</div></div>
+
+<!-- NURSE STOP CONFIRM -->
+<div class="mdl-o" id="nurse-confirm" onclick="if(event.target===this)document.getElementById('nurse-confirm').classList.remove('act')"><div class="mdl" style="background:var(--bg);border-radius:var(--r);padding:22px;width:90%;max-width:350px;margin:auto;text-align:center">
+  <div style="font-size:2rem;margin-bottom:8px">🤱</div>
+  <div style="font-weight:800;font-size:1rem;margin-bottom:12px" data-t="f_nurse_stop_q">Stillen wirklich beenden?</div>
+  <div id="nurse-confirm-info" style="font-size:.85rem;color:var(--txt-m);margin-bottom:16px"></div>
+  <div style="display:flex;gap:12px;justify-content:center">
+    <button onclick="nurseStopConfirmed()" style="padding:10px 24px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--ok);color:#fff" data-t="f_nurse_stop_yes">✓ Ja, beenden</button>
+    <button onclick="document.getElementById('nurse-confirm').classList.remove('act')" style="padding:10px 24px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--bg2);color:var(--txt-l)" data-t="f_nurse_stop_no">← Weiter stillen</button>
+  </div>
+</div></div>
+
+
+<div class="mdl-o" id="nurse-close-confirm" onclick="if(event.target===this)document.getElementById('nurse-close-confirm').classList.remove('act')"><div class="mdl" style="background:var(--bg);border-radius:var(--r);padding:22px;width:90%;max-width:350px;margin:auto;text-align:center">
+  <div style="font-size:2rem;margin-bottom:8px">🤱</div>
+  <div style="font-weight:800;font-size:1rem;margin-bottom:12px" data-t="f_nurse_close_q">Stillen schließen?</div>
+  <div id="nurse-close-info" style="font-size:.85rem;color:var(--txt-m);margin-bottom:16px"></div>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <button onclick="nurseCloseSave()" style="padding:10px 20px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--ok);color:#fff" data-t="f_nurse_close_save">💾 Speichern & Schließen</button>
+    <button onclick="nurseCloseDiscard()" style="padding:10px 20px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--err);color:#fff" data-t="f_nurse_close_discard">🗑 Verwerfen</button>
+    <button onclick="document.getElementById('nurse-close-confirm').classList.remove('act')" style="padding:10px 20px;border:none;border-radius:var(--rs);font-weight:800;cursor:pointer;background:var(--bg2);color:var(--txt-l)" data-t="f_nurse_close_cancel">← Zurück</button>
+  </div>
+</div></div>
+
+<!-- NURSE MINI-PILL (shown when nursing timer minimized) -->
+<div id="nurse-mini" style="display:none;position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:999;background:linear-gradient(135deg,#ff6b9d,#c44dff);color:#fff;border-radius:50px;padding:8px 18px;font-size:.85rem;font-weight:800;cursor:pointer;box-shadow:0 4px 18px rgba(196,77,255,.4);animation:nursePulse 2s infinite;white-space:nowrap;font-family:Nunito,sans-serif" onclick="nurseRestore()">
+  <span>🤱</span> <span id="nurse-mini-time">00:00</span> <span id="nurse-mini-side" style="opacity:.8;font-size:.75rem"></span> <span style="margin-left:6px;font-size:.7rem;opacity:.7">▲</span>
+</div>
+
+<!-- ===== TAGESUHR (24h Circular View) ===== -->
+<div class="scr" id="scr-tagesuhr">
+  <div class="sec-t" style="margin-bottom:12px">🕐 Tagesuhr</div>
+  <div style="background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:14px;display:flex;justify-content:center">
+    <svg id="tu-svg" viewBox="0 0 320 320" width="100%" style="max-width:320px;height:auto" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+  <div id="tu-prompt" style="display:none;background:linear-gradient(90deg,rgba(127,108,255,.15),rgba(244,114,182,.15));border:1px solid rgba(127,108,255,.25);border-radius:14px;padding:12px 14px;margin-bottom:12px;align-items:center;gap:10px"></div>
+  <div id="tu-stats" style="margin-bottom:14px"></div>
+  <div style="background:var(--card);border-radius:var(--r);padding:14px;font-size:.8rem;color:var(--txt-m);line-height:1.5">
+    <div style="font-weight:700;color:var(--txt);margin-bottom:6px">Legende</div>
+    <div>🟣 Schlafphasen · 🌙 dunkler = Nachtschlaf</div>
+    <div>🌸 Stillen · 🔵 Flasche · 🟡 Beikost</div>
+    <div>⭐ Goldener Punkt = Jetzt · 🩷 Pulsierende Bubble = nächstes Nickerchen</div>
+    <div style="margin-top:8px;font-size:.75rem">Vorhersage basiert auf deinem bestehenden Algorithmus. Aktualisiert sich alle 30 Sek.</div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bnav"><div class="bnav-in">
+  <button class="ni act" data-s="home" onclick="nav('home')"><span class="nii">🏠</span><span class="nil" data-t="nav_home">Home</span></button>
+  <button class="ni" data-s="today" onclick="nav('today')"><span class="nii">📅</span><span class="nil" data-t="nav_today">Tagebuch</span></button>
+  <button class="ni" data-s="sounds" onclick="nav('sounds')"><span class="nii">🎵</span><span class="nil" data-t="nav_sounds">Sounds</span></button>
+  <button class="ni" data-s="milk" onclick="nav('milk');milkRender()"><span class="nii">🧴</span><span class="nil" data-t="nav_milk">Milch</span></button>
+  <button class="ni" data-s="course" onclick="nav('course')"><span class="nii">📚</span><span class="nil" data-t="nav_course">Kurs</span></button>
+  <button class="ni" data-s="trends" onclick="nav('trends')"><span class="nii">📈</span><span class="nil" data-t="nav_trends">Trends</span></button>
+  <button class="ni" data-s="settings" onclick="nav('settings')"><span class="nii">⚙️</span><span class="nil" data-t="nav_more">Mehr</span></button>
+</div></div>
+
+<!-- Night Wake Modal -->
+<div class="mdl-o" id="nw-modal" style="position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);align-items:flex-end;justify-content:center"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="width:40px;height:4px;background:var(--txt-m);border-radius:2px"></div><button onclick="event.stopPropagation();closeForm()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div><div class="mdl-t" data-t="f_night_t">🌙 Nächtliches Aufwachen</div>
+<div class="fg"><label class="fl" data-t="f_dur_wake" data-t="f_dur_wake">Dauer wach (Min)</label><input class="fi" type="number" id="nwm-d" placeholder="15" value="15"></div>
+<div class="fg"><label class="fl" data-t="f_reason">Grund</label><div class="pills" id="pi-nwm"><div class="pill sel" data-v="hunger" onclick="sp(this)" data-t="nw_hunger">🍼 Hunger</div><div class="pill" data-v="comfort" onclick="sp(this)" data-t="nw_comfort">🤗 Trost</div><div class="pill" data-v="diaper" onclick="sp(this)" data-t="nw_diaper">🧷 Windel</div><div class="pill" data-v="unknown" onclick="sp(this)">❓</div></div></div>
+<button class="sbtn" onclick="saveNwModal()" data-t="f_save">💾 Speichern</button></div></div>
+<!-- HISTORY MODAL -->
+<div class="mdl-o" id="history-modal" onclick="if(event.target===this)this.classList.remove('act')" style="position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);align-items:flex-end;justify-content:center">
+<div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+    <div class="mdl-t" style="margin:0" data-t="hi_t">📋 Alle Einträge</div>
+    <button onclick="el('history-modal').classList.remove('act')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m)">✕</button>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+    <button class="pill sel" onclick="filterHist('all',this)">Alle</button>
+    <button class="pill" onclick="filterHist('sleep',this)">😴</button>
+    <button class="pill" onclick="filterHist('feed',this)">🍼</button>
+    <button class="pill" onclick="filterHist('diaper',this)">🧷</button>
+    <button class="pill" onclick="filterHist('nightwake',this)">🌙</button>
+    <button class="pill" onclick="filterHist('note',this)">📝</button>
+  </div>
+  <div id="hist-count" style="font-size:.75rem;color:var(--txt-m);margin-bottom:8px"></div>
+  <div id="hist-list"></div>
+</div></div>
+
+
+<script src="script.js"></script>
+<!-- LANGUAGE PICKER MODAL -->
+<div class="mdl-o" id="fm-lang" onclick="if(event.target===this)closeForm()"><div class="mdl" style="background:var(--bg);border-radius:var(--r) var(--r) 0 0;padding:22px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div class="mdl-t">🌍 Language</div><button onclick="event.stopPropagation();closeForm()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--txt-m);padding:4px 8px">✕</button></div>
+<div id="lang-list" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px"></div>
+</div></div>
+
+<!-- TUTORIAL WALKTHROUGH -->
+<div id="tut-overlay">
+  <div id="tut-spotlight"></div>
+  <div id="tut-card" class="arrow-top">
+    <div id="tut-emoji"></div>
+    <div id="tut-title"></div>
+    <div id="tut-text"></div>
+    <div id="tut-step"></div>
+    <div id="tut-dots"></div>
+    <div id="tut-btns">
+      <button id="tut-skip" onclick="tutSkip()"></button>
+      <button id="tut-back" onclick="tutNav(-1)" style="display:none"></button>
+      <button id="tut-next" onclick="tutNav(1)"></button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
